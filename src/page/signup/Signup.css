@@ -1,0 +1,60 @@
+.signup__container{
+    padding:1em;
+    margin:1em 0;
+}
+
+
+.signup__form{
+    margin:0 auto;
+    width:400px;
+    max-width: 100%;
+}
+
+.signup__form .form__title{
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.2ch;
+
+}
+
+.signup__form .form__controle{
+    margin:1em 0;
+}
+
+.signup__form label{
+    display: block;
+    font-size: 1.2rem;
+}
+
+.signup__form input{
+    width: 100%;
+    padding:10px 5px;
+    outline:none;
+    border:1px solid #777;
+    font-size: 1.1rem;
+    color:#777;
+    margin-top:0.3em;
+}
+
+.signup__form .btn{
+    width:30%;
+    padding:8px 5px;
+    font-size: 1.3rem;
+    min-width: 100px;
+}
+
+.signup__form .btn.btn--guest{
+
+    margin:0 1em;
+    font-size: 0.9rem;
+    padding:4px 2px;
+}
+
+.signup__form .form__btncl{
+    display: flex;
+    align-items: center;
+}
+
+.login__link{
+    margin:1em 0;
+}

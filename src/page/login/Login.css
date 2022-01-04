@@ -11,9 +11,10 @@
 }
 
 .login__form .form__title{
-    text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 900;
+    letter-spacing: 0.2ch;
+
 }
 
 .login__form .form__control{
