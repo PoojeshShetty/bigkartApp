@@ -37,11 +37,13 @@ function Login() {
                     <button className="btn btn--black">Login</button>
                     <button className="btn btn--black btn--guest">Guest Credentials</button>
                 </div>
+
+                <div className="signup__link">
+                    Don't have an account ? <Link to="/signup">Signup</Link>
+                </div>
             </form>
 
-            <div className="signup__link">
-                Don't have an account ? <Link to="/signup">Signup</Link>
-            </div>
+            
         </div>
     )
 }
