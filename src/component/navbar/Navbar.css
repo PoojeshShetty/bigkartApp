@@ -5,6 +5,8 @@
     left: 0;
     border:1px solid #777;
     box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+    height: 4rem;
+    z-index:10;
 }
 
 .navbar__items{
@@ -17,7 +19,7 @@
 
 .logo{
     margin-right: auto;
-    
+    font-weight: 900;
 }
 
 
