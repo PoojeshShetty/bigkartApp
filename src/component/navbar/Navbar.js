@@ -17,17 +17,17 @@ function Navbar() {
                             </span>
                         </li>
                 </Link>
-                <Link to="/cart">
+                <Link to="/login">
                     <li className="navbar__item">
                         <div className="navbar__itemIcn">
-                                Cart
+                                Login
                         </div>
                     </li>
                 </Link>
-                <Link to="/wishlist">
+                <Link to="/signup">
                     <li className="navbar__item">
                         <div className="navbar__itemIcn">
-                                Cart
+                                Signup
                         </div>
                     </li>
                 </Link>

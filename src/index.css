@@ -1,8 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
+:root{
+
+}
+
+*{
+  box-sizing: border-box;
+}
 
 body{
   font-family:'Varela Round', sans-serif;
   margin:0;
   padding:0;
+  font-size: 16px;
+}
+
+.btn{
+  width:100%;
+  outline:none;
+  border:1px solid #777;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn--black{
+  background-color: black;
+  color:white;
+  border:1px solid #777;
+}
+
+.btn--black:hover{
+  background-color: white;
+  color:black;
 }

@@ -15,6 +15,7 @@
     padding:1em;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
 }
 
 .logo{
@@ -38,4 +39,16 @@
 
 .logo__txt{
     font-size: 1.5rem;
+}
+
+@media screen and (max-width:500px){
+
+    .navbar__item{
+        font-size: 0.9rem;
+    }
+
+    .logo__txt{
+        font-size: 1.2rem;
+    }
+    
 }
