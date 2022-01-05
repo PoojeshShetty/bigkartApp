@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import './Products.css'
 import Sidebar from '../../component/sidebar/Sidebar'
+import Product from '../../component/product/Product'
 
 function Products() {
 
@@ -13,8 +14,16 @@ function Products() {
                 <div className="products__filter">
                     <button onClick={()=>setViewSidbar(true)}>filter</button>
                 </div>
-                <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt unde explicabo esse eveniet illum molestias fugit facere tenetur, adipisci fugiat quod nulla dolorem optio culpa recusandae quam cumque! Officia, ipsa! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, maxime ratione? Fugit, sunt ut molestiae nostrum vitae aspernatur et recusandae deserunt cum provident magnam beatae placeat. Unde nulla iste officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti, maiores, velit ea at reiciendis nulla quaerat voluptatum dolore ad quod similique nostrum totam est! Ducimus corporis et expedita alias?
+                
+                <div className="products__list">
+                <Product />
+                <Product />
+                <Product />
+                <Product />
+                <Product />
+                <Product />
+                <Product />
+                <Product />
                 </div>
             </div>
 
@@ -22,6 +31,8 @@ function Products() {
                 viewsidebar={viewsidebar} 
                 setViewSidebar={setViewSidbar} 
             />
+
+            <br />
 
         </div>
     )

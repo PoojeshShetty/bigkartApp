@@ -1,4 +1,15 @@
 .products__filter{
     float:right;
-    cursor:pointer
+    cursor:pointer;
+    position:sticky;
+    top:5rem;
+    z-index: 115;
+}
+
+.products__list{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(310px,1fr));
+    gap:2em;
+    z-index:110;
 }
