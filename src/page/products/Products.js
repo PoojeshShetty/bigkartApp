@@ -10,7 +10,9 @@ function Products() {
     return (
         <div>
             <div className="products__container">
-                Products page
+                <div className="products__title">
+                    Products
+                </div>
                 <div className="products__filter">
                     <button onClick={()=>setViewSidbar(true)}>filter</button>
                 </div>

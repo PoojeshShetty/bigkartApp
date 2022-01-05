@@ -80,7 +80,7 @@
     border:2px solid red;
 }
 
-.product__wish img{
+.product--inwish img{
     filter:invert(15%) sepia(92%) saturate(4805%) hue-rotate(16deg) brightness(110%) contrast(105%);
 }
 

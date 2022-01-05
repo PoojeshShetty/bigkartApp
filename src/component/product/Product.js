@@ -34,10 +34,8 @@ function Product() {
                 </div>
             </div>
 
-            <div className="product__wish product--inwish">
-                
-            <img src="/svg/wish_btn.svg" alt="" />    
-               
+            <div className="product__wish">   
+                <img src="/svg/wish_btn.svg" alt="" />    
             </div>
         </div>
     )
