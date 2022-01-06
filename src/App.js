@@ -5,6 +5,7 @@ import Login from './page/login/Login'
 import Signup from './page/signup/Signup'
 import Products from './page/products/Products'
 import ViewProductPage from './page/viewproduct/ViewProductPage';
+import ViewCartPage from './page/viewcart/ViewCartPage';
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
         <Route path="/viewproduct" >
           <ViewProductPage />
         </Route>
+
+        <Route path="/cart" >
+          <ViewCartPage />
+        </Route>
+
         <Route path="/" >
           Home
         </Route>

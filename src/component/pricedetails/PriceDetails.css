@@ -1,0 +1,39 @@
+.productdetails__container{
+    max-width: 100%;
+    margin:1em auto;
+}
+
+.productdetails__container .title{
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1em;
+    display: block;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.price__breakdown{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:1em 0;
+    font-size:1.1rem;
+}
+
+.total__amount{
+    font-size: 1.2rem;
+    font-weight: 900;
+    padding:3px;
+    border:1px solid rgba(0,0,0,0.1);
+}
+
+
+
+@media screen and (max-width:400px){
+    .productdetails__container .title{
+        font-size:1.2rem;
+    }
+
+    .price__breakdown{
+        font-size: 0.9rem;
+    }
+}
