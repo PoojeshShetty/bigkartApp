@@ -1,0 +1,59 @@
+.checkout__container{ 
+    margin:0 auto;
+}
+
+.checkout__order{
+    width: 100px;
+}
+
+.checkout__order .btn{
+    font-size: 1.2rem;
+    padding:0.2em 0.5em;
+}
+
+.user__address{
+    display: flex;
+    align-items: center;
+}
+
+.user__address span{
+    flex:1;
+    font-weight: 900;
+    margin:3px 6px;
+}
+
+.user__address .address{
+    flex: 2;
+}
+
+.btn.btn--black.btn--disabled{
+    cursor: not-allowed;
+    background-color: white;
+    color:black;
+}
+
+@media screen and (min-width:700px) {
+    .checkout__container{
+        width: 50%;
+    }
+    
+    .user__address span{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .checkout__container{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .checkout__container{
+        width: 90%;
+    }
+
+    .user__address span{
+        font-size: 0.9rem;
+    }
+}

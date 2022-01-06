@@ -6,6 +6,7 @@ import Signup from './page/signup/Signup'
 import Products from './page/products/Products'
 import ViewProductPage from './page/viewproduct/ViewProductPage';
 import ViewCartPage from './page/viewcart/ViewCartPage';
+import CheckoutPage from './page/checkout/CheckoutPage';
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
 
         <Route path="/cart" >
           <ViewCartPage />
+        </Route>
+
+        <Route path="/checkout" >
+          <CheckoutPage />
         </Route>
 
         <Route path="/" >
