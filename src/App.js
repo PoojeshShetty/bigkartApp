@@ -7,6 +7,10 @@ import Products from './page/products/Products'
 import ViewProductPage from './page/viewproduct/ViewProductPage';
 import ViewCartPage from './page/viewcart/ViewCartPage';
 import CheckoutPage from './page/checkout/CheckoutPage';
+import WishlistPage from './page/wishlist/WishlistPage';
+import AddProductPage from './page/admin/addproduct/AddProductPage';
+import AdmProductsPage from './page/admin/products/AdmProductsPage';
+import AdmEditProductPage from './page/admin/editproduct/AdmEditProductPage';
 
 function App() {
   return (
@@ -33,6 +37,22 @@ function App() {
 
         <Route path="/checkout" >
           <CheckoutPage />
+        </Route>
+
+        <Route path="/wishlist" >
+          <WishlistPage />
+        </Route>
+
+        <Route path="/admin/products" >
+          <AdmProductsPage />
+        </Route>
+
+        <Route path="/admin/editproduct" >
+          <AdmEditProductPage />
+        </Route>
+
+        <Route path="/admin/addproduct" >
+          <AddProductPage />
         </Route>
 
         <Route path="/" >

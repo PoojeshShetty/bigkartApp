@@ -1,0 +1,28 @@
+.admproducts__container{
+    padding:1em;
+}
+
+.admproducts__title{
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2ch;
+    text-align: center;
+    margin:0em 0 2em;
+}
+
+.admproducts__filter{
+    float:right;
+    cursor:pointer;
+    position:sticky;
+    top:5rem;
+    z-index: 115;
+}
+
+.admproducts__list{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(310px,1fr));
+    gap:2em;
+    z-index:110;
+}

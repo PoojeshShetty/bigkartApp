@@ -1,0 +1,46 @@
+.addproduct__container{
+    padding:1em;
+}
+
+.addproduct__container .title{
+    font-size: 1.3rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+
+.addproduct__form{
+    width: 400px;
+    max-width: 100%;
+    padding:1em;
+    border:1px solid #777;
+    border-radius: 20px;
+    margin:0 auto;
+    font-size: 1rem;
+}
+
+.form__controle{
+    margin:8px 0;
+}
+
+.form__controle span{
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+
+.form__controle input, textarea{
+    width: 100%;
+    padding:8px 5px;
+}
+
+.form__controle textarea{
+    resize: none;
+}
+
+.addproduct__form .btn{
+    padding:8px 10px;
+    font-size: 1rem;
+}
+

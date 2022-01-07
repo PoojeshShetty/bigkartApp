@@ -61,7 +61,7 @@ function ViewCartPage() {
             </div>
 
             <div className="viewcart__pricedetails">
-                <PriceDetails />
+                <PriceDetails productInCart={initialProduct}/>
                 <Link to="/checkout" className='btn btn--black'>
                     Checkout
                 </Link>
