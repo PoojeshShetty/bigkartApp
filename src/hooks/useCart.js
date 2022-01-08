@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react'
 import { useCartContext } from './useCartContext'
+import { useLoading } from './useLoading'
 
 function useCart() {
-
-    const [cartPending, setCartPending] = useState(false)
     const [cartError, setCartError] = useState(null)
     const [cancelled, setCancelled] = useState(false)
 
     const { cart,wishlist, cartDispatch } = useCartContext()
+    const { loadDispatch} = useLoading()
 
     useEffect(()=>{
 
@@ -15,9 +15,17 @@ function useCart() {
 
     },[])
 
+    const setLoading = () => {
+        loadDispatch({type:'LOADING'})
+    }
+
+    const setLoaded = () => {
+        loadDispatch({type:'LOADED'})
+    }
+
     const addProductToCart = (product) => {
         
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -29,14 +37,13 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            setTimeout(()=> setLoaded(),5000)    
         }
     }
 
     const incrProductQt = (id) => {
         
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -52,13 +59,12 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            setTimeout(()=> setLoaded(),5000)
         }
     }
 
     const decrProductQt = (id) => {
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -74,13 +80,12 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            setTimeout(()=> setLoaded(),5000)
         }
     }
 
     const deleteProduct = (id) => {
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -93,13 +98,12 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            setTimeout(()=> setLoaded(),5000)
         }
     }
 
     const addProductWishlist = (product) => {
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -111,13 +115,12 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            setTimeout(()=> setLoaded(),5000)
         }
     }
 
     const removeProductWishlist = (product) => {
-        setCartPending(true)
+        setLoading()
         setCartError(null)
 
         try{
@@ -131,8 +134,8 @@ function useCart() {
             if(!cancelled)
                 setCartError(err.message)
         }finally{
-            if(!cancelled)
-                setTimeout(()=> setCartPending(false),5000)
+            
+            setTimeout(()=> setLoaded(),5000)
         }
     }
 
@@ -143,7 +146,6 @@ function useCart() {
         deleteProduct,
         addProductWishlist,
         removeProductWishlist,
-        cartPending,
         cartError
     }
 }
