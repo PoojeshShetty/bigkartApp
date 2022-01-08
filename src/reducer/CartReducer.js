@@ -14,6 +14,18 @@ const CartReducer = (state, action) => {
             return {...state, wishlist: state.wishlist.concat({...action.payload})}
         case 'REMOVE_FROM_WISHLIST':
             return {...state, wishlist: action.payload}
+        case 'SORT':
+            return {...state, sort: action.payload}
+        case 'ADD_BRAND_NAME':
+            return {...state, brand: action.payload}
+        case 'REMOVE_BRAND_NAME':
+            return {...state, brand: action.payload}
+        case 'ADD_TYPE_NAME':
+            return {...state, type: action.payload}
+        case 'REMOVE_TYPE_NAME':
+            return {...state, type: action.payload}
+        case 'RESET_FILTER':
+            return {...state, type:[], brand:[], sort:''}
         default:
             return state
     }

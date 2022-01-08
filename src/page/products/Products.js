@@ -3,8 +3,9 @@ import './Products.css'
 import Sidebar from '../../component/sidebar/Sidebar'
 import Product from '../../component/product/Product'
 import Filter from '../../component/filter/Filter'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { useCartContext } from '../../hooks/useCartContext'
+import { sortProductList, brandProductFilter, typeProductFilter } from './utils/filterUtils'
 
 const initialProductList = [
     {
@@ -14,7 +15,8 @@ const initialProductList = [
         gender: 'male',
         cost: '2300',
         status: 'available',
-        brand: 'Nike'
+        brand: 'Nike',
+        type: 'Shirt'
     },
     {
         id:2,
@@ -23,7 +25,8 @@ const initialProductList = [
         gender: 'male',
         cost: '2300',
         status: 'available',
-        brand: 'Nike'
+        brand: 'Nike',
+        type: 'Shoe'
     },
     {
         id:3,
@@ -32,7 +35,8 @@ const initialProductList = [
         gender: 'male',
         cost: '2300',
         status: 'available',
-        brand: 'Nike'
+        brand: 'Nike',
+        type: 'Jeans'
     },
     {
         id:4,
@@ -41,7 +45,8 @@ const initialProductList = [
         gender: 'male',
         cost: '2300',
         status: 'available',
-        brand: 'Nike'
+        brand: 'Nike',
+        type: 'Jeans'
     },
     {
         id:5,
@@ -50,7 +55,8 @@ const initialProductList = [
         gender: 'male',
         cost: '3000',
         status: 'available',
-        brand: 'Allen Solley'
+        brand: 'Allen Solley',
+        type: 'Shirt'
     },
     {
         id:6,
@@ -59,7 +65,8 @@ const initialProductList = [
         gender: 'male',
         cost: '1500',
         status: 'available',
-        brand: 'Sonata'
+        brand: 'Sonata',
+        type: 'Watch'
     }
 
 ]
@@ -67,6 +74,12 @@ const initialProductList = [
 function Products() {
 
     const [viewsidebar,setViewSidbar] = useState(false)
+    const {sort,brand,type} = useCartContext()
+
+    let productList = initialProductList
+    productList = sortProductList(initialProductList,sort)
+    productList = brandProductFilter(productList,brand)
+    productList = typeProductFilter(productList,type)
 
     return (
         <div>
@@ -75,18 +88,18 @@ function Products() {
                     Products
                 </div>
                 <div className="products__filter">
-                    <button onClick={()=>setViewSidbar(true)}>filter</button>
+                    <button className="btn btn--black" 
+                        onClick={()=>setViewSidbar(true)}>Filter</button>
                 </div>
                 
                 <div className="products__list">
-                    {initialProductList.map(product => 
+
+                    {productList.map(product => 
                     
                         <Product propsProduct={product}
                             key={product.id} />
                     
-                    )
-                    
-                    }
+                    )}
                 
                 </div>
             </div>
@@ -95,7 +108,7 @@ function Products() {
                 viewsidebar={viewsidebar} 
                 setViewSidebar={setViewSidbar} 
             >
-                <Filter />
+                <Filter propsProducts={initialProductList}/>
             </Sidebar>
 
             <br />

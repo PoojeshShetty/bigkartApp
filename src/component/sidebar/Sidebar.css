@@ -11,9 +11,20 @@
     z-index: 120;
 }
 
+.sidebar .btn__collection{
+    width: 99%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.btn__collection > *{
+    flex:1;
+}
+
 .sidebar__content{
     position: fixed;
-    width: 10rem;
+    width: 12rem;
     height: 100%;
     background-color: white;
     transform: translateX(-100%);

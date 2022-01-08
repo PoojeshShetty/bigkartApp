@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SignInNav from './SignInNav'
+import SignoutNav from './SignoutNav'
 import './Navbar.css'
 
 function Navbar() {
@@ -17,37 +19,9 @@ function Navbar() {
                             </span>
                         </li>
                 </Link>
-                <Link to="/login">
-                    <li className="navbar__item">
-                        <div className="navbar__itemIcn">
-                                Login
-                        </div>
-                    </li>
-                </Link>
 
-                <Link to="/signup">
-                    <li className="navbar__item">
-                        <div className="navbar__itemIcn">
-                                Signup
-                        </div>
-                    </li>
-                </Link>
+                <SignInNav />
                 
-                <Link to="/cart">
-                    <li className="navbar__item">
-                        <div className="navbar__itemIcn">
-                                Cart
-                        </div>
-                    </li>
-                </Link>
-
-                <Link to="/logout">
-                    <li className="navbar__item">
-                        <div className="navbar__itemIcn">
-                                Logout
-                        </div>
-                    </li>
-                </Link>
             </ul>
         </nav>
     )
