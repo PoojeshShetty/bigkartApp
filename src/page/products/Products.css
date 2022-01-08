@@ -26,3 +26,7 @@
     gap:2em;
     z-index:110;
 }
+
+.product__link{
+    cursor: pointer;
+}

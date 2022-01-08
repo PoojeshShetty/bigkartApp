@@ -55,6 +55,7 @@ function CheckoutPage() {
     })
 
     const [editAddr, setEditAddr] = useState(false)
+    
     return (
         <div className="checkout__container">
             <div className="product__price">

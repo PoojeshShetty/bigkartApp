@@ -7,7 +7,7 @@ function Navbar() {
         <nav className="navbar">
             <ul className="navbar__items">
 
-                <Link to="/cart" className='logo'>
+                <Link to="/products" className='logo'>
                         <li className="navbar__item">
                             <div className="logo_icon">
                                 
@@ -24,6 +24,7 @@ function Navbar() {
                         </div>
                     </li>
                 </Link>
+
                 <Link to="/signup">
                     <li className="navbar__item">
                         <div className="navbar__itemIcn">
@@ -31,6 +32,15 @@ function Navbar() {
                         </div>
                     </li>
                 </Link>
+                
+                <Link to="/cart">
+                    <li className="navbar__item">
+                        <div className="navbar__itemIcn">
+                                Cart
+                        </div>
+                    </li>
+                </Link>
+
                 <Link to="/logout">
                     <li className="navbar__item">
                         <div className="navbar__itemIcn">

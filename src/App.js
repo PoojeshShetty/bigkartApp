@@ -11,22 +11,32 @@ import WishlistPage from './page/wishlist/WishlistPage';
 import AddProductPage from './page/admin/addproduct/AddProductPage';
 import AdmProductsPage from './page/admin/products/AdmProductsPage';
 import AdmEditProductPage from './page/admin/editproduct/AdmEditProductPage';
+import { useCartContext } from './hooks/useCartContext';
 
 function App() {
+
+  const context = useCartContext()
+
+  console.log({...context})
+
   return (
     <div className="App">
       <Navbar />
       <div className="App__container">
       <Switch>
+
         <Route path="/login" exact>
           <Login />
         </Route>
+
         <Route path="/signup" exact>
           <Signup />
         </Route>
+
         <Route path="/products" >
           <Products />
         </Route>
+        
         <Route path="/viewproduct" >
           <ViewProductPage />
         </Route>

@@ -7,6 +7,8 @@
     overflow: hidden;
     margin:0 auto;
     position: relative;
+    color:inherit;
+    text-decoration: none;
 }
 
 .product__card:hover{
@@ -27,6 +29,7 @@
     width: 90%;
     height: 100%;
     margin:0 auto;  
+    object-fit: cover;
 }
 
 .product__info{

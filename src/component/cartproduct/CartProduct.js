@@ -1,58 +1,59 @@
 import {useState} from 'react'
+import { useCart } from '../../hooks/useCart'
 import './CartProduct.css'
 
 
 function CartProduct({product}) {
 
-    const [viewproduct , setViewProduct] = useState(product)
+    const { incrProductQt, decrProductQt, deleteProduct } = useCart()
 
     const handleDeleteProduct = (id) => {
-        alert('deleted product of id ',id)
+        deleteProduct(id)
     }
 
-    const handleRemoveProduct = () => {
-        alert('decrement')
+    const handleRemoveProduct = (id) => {
+        decrProductQt(id)
     }
 
-    const handleAddProduct = () => {
-        alert('increment')
+    const handleAddProduct = (id) => {
+        incrProductQt(id)
     }
 
     return (
         <div className="cartproduct__container">
             <div className="cartproduct__img">
-                <img src={viewproduct.image} alt={viewproduct.name} />
+                <img src={product.image} alt={product.name} />
             </div>
             <div className="cartproduct__info">
                 <div className="cartproduct__name">
-                    {viewproduct.name}
+                    {product.name}
                 </div>
                 <div className="cartproduct__brand">
-                    {viewproduct.brand}
+                    {product.brand}
                 </div>
 
                 <div className="cartproduct__cost">
-                    Rs {viewproduct.cost}
+                    Rs {product.cost}
                 </div>
 
                 <div className="cartproduct__quantity">
                     {
-                        viewproduct.qt === 1 ?
+                        product.qt === 1 ?
                         <button className="cartproduct__decr"
-                            onClick={() => handleDeleteProduct(viewproduct.id)}>
+                            onClick={() => handleDeleteProduct(product.id)}>
                             <img src="/svg/delete.svg" alt="" />
                         </button>:
                         <button className="cartproduct__decr"
-                            onClick={handleRemoveProduct}>
+                            onClick={() => handleRemoveProduct(product.id)}>
                             <img src="/svg/remove.svg" alt="" />
                         </button>
                     }
                     
                     <div className="cartproduct__val">
-                        {viewproduct.qt}
+                        {product.qt}
                     </div>
                     <button className="cartproduct__incr"
-                        onClick={handleAddProduct}>
+                        onClick={() => handleAddProduct(product.id)}>
                         <img src="/svg/add.svg" alt="" />
                     </button>
                 </div>
