@@ -35,6 +35,7 @@ function Product({propsProduct}) {
  
     const handleRemoveProductFromWishlist = (product,e) => {
         e.preventDefault()
+
         if(!user)
         {
             history.push('/login')

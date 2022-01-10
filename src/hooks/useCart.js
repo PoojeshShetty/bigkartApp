@@ -2,18 +2,15 @@ import {useState, useEffect} from 'react'
 import { useAuth } from './useAuth'
 import { useCartContext } from './useCartContext'
 import useCollection from './useCollection'
-import { useLoading } from './useLoading'
-import { useLoadingUtils } from './useLoadingUtils'
 
 function useCart() {
     const [cartError, setCartError] = useState(null)
     const [cancelled, setCancelled] = useState(false)
 
     const { cart,wishlist, cartDispatch } = useCartContext()
-    const { setLoading, setLoaded}  = useLoadingUtils()
 
     const {user} = useAuth()
-    const {addDocumentWithUrl,updateDocumentWithUrl,deleteDocumentWithUrl} = useCollection(`carts`)
+    const {addDocumentWithUrlId,updateDocumentWithUrl,deleteDocumentWithUrl} = useCollection(`carts`)
 
     useEffect(()=>{
 
@@ -25,7 +22,7 @@ function useCart() {
         
         try{
 
-            addDocumentWithUrl(`carts/${user.uid}/products`,{...product,qt:1})
+            addDocumentWithUrlId(`carts/${user.uid}/products`,product.id,{...product,qt:1})
 
             cartDispatch({type:'ADD_TO_CART', payload: {...product, qt: 1}})
 
@@ -36,7 +33,7 @@ function useCart() {
         }
     }
 
-    const incrProductQt = async (id,docId) => {
+    const incrProductQt = async (id) => {
         
         setCartError(null)
 
@@ -52,7 +49,7 @@ function useCart() {
                 return prod
             })
 
-            updateDocumentWithUrl(`carts/${user.uid}/products`,docId,{...updateQt})
+            updateDocumentWithUrl(`carts/${user.uid}/products`,id,{...updateQt})
             
             cartDispatch({type:'INCR_PRODUCT_QT', payload: cartList })
 
@@ -63,7 +60,7 @@ function useCart() {
         }
     }
 
-    const decrProductQt = (id, docId) => {
+    const decrProductQt = (id) => {
 
         setCartError(null)
 
@@ -80,7 +77,7 @@ function useCart() {
                 return prod
             })
 
-            updateDocumentWithUrl(`carts/${user.uid}/products`,docId,{...updateQt})
+            updateDocumentWithUrl(`carts/${user.uid}/products`,id,{...updateQt})
             
             cartDispatch({type:'DECR_PRODUCT_QT', payload: cartList })
 
@@ -91,7 +88,7 @@ function useCart() {
         }
     }
 
-    const deleteProduct = (id,docId) => {
+    const deleteProduct = (id) => {
 
         setCartError(null)
 
@@ -99,8 +96,8 @@ function useCart() {
             
             let cartList = cart.filter(prod => prod.id !== id)
 
-            deleteDocumentWithUrl(`carts/${user.uid}/products`,docId)
-            
+            deleteDocumentWithUrl(`carts/${user.uid}/products`,id)
+
             cartDispatch({type:'DECR_PRODUCT_QT', payload: cartList })
 
         }catch(err)
@@ -116,7 +113,7 @@ function useCart() {
 
         try{
 
-            addDocumentWithUrl(`wishlist/${user.uid}/products`,{...product})
+            addDocumentWithUrlId(`wishlist/${user.uid}/products`,product.id,{...product})
 
             cartDispatch({type:'ADD_TO_WISHLIST', payload: product })
 
@@ -128,12 +125,16 @@ function useCart() {
     }
 
     const removeProductWishlist = (product) => {
-        setLoading()
+        
         setCartError(null)
 
         try{
             
             let newWishlist = wishlist.filter(prod => prod.id !== product.id)
+
+            console.log({product})
+            
+            deleteDocumentWithUrl(`wishlist/${user.uid}/products`,product.id)
 
             cartDispatch({type:'REMOVE_FROM_WISHLIST', payload: newWishlist})
 
@@ -141,9 +142,6 @@ function useCart() {
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            
-            setTimeout(()=> setLoaded(),5000)
         }
     }
 

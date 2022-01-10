@@ -54,7 +54,7 @@ function App() {
             <Products />
           </Route>
 
-          <Route path="/viewproduct" >
+          <Route path="/viewproduct/:id" exact>
             <ViewProductPage />
           </Route>
 

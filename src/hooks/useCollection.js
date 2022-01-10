@@ -70,7 +70,7 @@ function useCollection(name) {
         }
     }
 
-    const addDocumentWithUrl = async (url,object) => {
+    const addDocumentWithUrlId = async (url,id,object) => {
         
         const req = projectFirestore.collection(url)
 
@@ -78,7 +78,7 @@ function useCollection(name) {
 
         try{
 
-            await req.add({...object})
+            await req.doc(id).set({...object})
 
             setSuccess(true)
         }catch(err)
@@ -134,7 +134,7 @@ function useCollection(name) {
         addDocument,
         updateDocument,
         deleteDocument,
-        addDocumentWithUrl,
+        addDocumentWithUrlId,
         updateDocumentWithUrl,
         deleteDocumentWithUrl,
         error,
