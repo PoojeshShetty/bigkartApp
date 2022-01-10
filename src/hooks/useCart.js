@@ -25,7 +25,7 @@ function useCart() {
         try{
 
             addDocumentWithUrl(`carts/${user.uid}/products`,{...product,qt:1})
-            
+
             cartDispatch({type:'ADD_TO_CART', payload: {...product, qt: 1}})
 
         }catch(err)
@@ -97,19 +97,19 @@ function useCart() {
     }
 
     const addProductWishlist = (product) => {
-        setLoading()
+        
         setCartError(null)
 
         try{
-            
+
+            addDocumentWithUrl(`wishlist/${user.uid}/products`,{...product})
+
             cartDispatch({type:'ADD_TO_WISHLIST', payload: product })
 
         }catch(err)
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            setTimeout(()=> setLoaded(),5000)
         }
     }
 

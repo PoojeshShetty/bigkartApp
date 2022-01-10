@@ -77,7 +77,7 @@ function Product({propsProduct}) {
                 </div>
             </div>
             {
-                wishlist.find(prod => prod.id === propsProduct.id) ?
+                wishlist.map(prod => prod.id).includes(propsProduct.id) ?
                 <div 
                     onClick={(e) => handleRemoveProductFromWishlist(propsProduct,e)}
                     className="product__wish product--inwish">   
