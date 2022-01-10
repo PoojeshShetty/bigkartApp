@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './component/navbar/Navbar';
-import { Switch, Route} from 'react-router-dom'
+import { Switch, Route, Redirect} from 'react-router-dom'
 import Login from './page/login/Login'
 import Signup from './page/signup/Signup'
 import Products from './page/products/Products'
@@ -15,25 +15,35 @@ import { useCartContext } from './hooks/useCartContext';
 import { useLoading } from './hooks/useLoading';
 import Loading from './component/loading/Loading';
 import { useAuth } from './hooks/useAuth';
+import HomePage from './page/home/HomePage';
 
 function App() {
 
   const context = useCartContext()
   const {loading} = useLoading()
-  const userContext = useAuth()
+  const {isAuthReady,user} = useAuth()
 
-  console.log(userContext)
+  console.log(context)
+  console.log({isAuthReady,user})
+
+  if(!isAuthReady)
+  return (
+    <Loading />
+  )
 
   return (
     <div className="App">
-      
+
       {loading && <Loading />}
+
       <Navbar />
       <div className="App__container">
         <Switch>
 
+
           <Route path="/login" exact>
-            <Login />
+            {user && <Redirect to="/products" />}
+            {!user && <Login />}
           </Route>
 
           <Route path="/signup" exact>
@@ -72,10 +82,13 @@ function App() {
             <AddProductPage />
           </Route>
 
-          <Route path="/" >
-            Home
+          <Route path="/home" >
+            <HomePage />
           </Route>
           
+          <Route path="/" exact>
+            <Redirect to="/home" />
+          </Route>
         </Switch>
       </div>
     </div>

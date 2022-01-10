@@ -1,12 +1,14 @@
 import {useState, useEffect} from 'react'
 import { useLoadingUtils } from './useLoadingUtils'
-import {projectAuth} from '../config/firebase'
+import {projectAuth, projectFirestore} from '../config/firebase'
+import { useAuth } from './useAuth'
 
 function useSignup() {
 
     const {setLoading, setLoaded} = useLoadingUtils()
     const [error, setError] = useState(null)
     const [cancelled , setCancelled] = useState(false)
+    const {dispatchAuth} = useAuth()
 
     useEffect(()=>{
         return () => setCancelled(true)
@@ -18,7 +20,23 @@ function useSignup() {
         setError(null)
         try{
             const res = await projectAuth.createUserWithEmailAndPassword(email,password)
-            console.log({res})
+            await projectFirestore.collection('users').doc(res.user.uid).set({
+                username,
+                email,
+                address:'',
+                type:'user'
+            })
+
+            const user = {
+                uid: res.user.uid,
+                username,
+                email,
+                address: '',
+                type:'user'
+            }
+
+            dispatchAuth({type:'LOGIN',payload:user})
+
         }catch(err)
         {
             if(!cancelled)

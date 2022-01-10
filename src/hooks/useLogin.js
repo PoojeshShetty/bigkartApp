@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
-import {projectAuth} from '../config/firebase'
+import {projectAuth,projectFirestore} from '../config/firebase'
+import { useAuth } from './useAuth'
 import { useLoadingUtils } from './useLoadingUtils'
 
 function useLogin() {
@@ -7,6 +8,7 @@ function useLogin() {
     const [error, setError] = useState(null)
     const [cancelled, setCancelled] = useState(false)
     const {setLoading, setLoaded} = useLoadingUtils()
+    const {dispatchAuth} = useAuth()
 
     useEffect(()=>{
 
@@ -18,8 +20,11 @@ function useLogin() {
         setLoading()
         try{
             const res = await projectAuth.signInWithEmailAndPassword(email,password)
-            console.log({res})
-            
+
+            const user = await projectFirestore.collection('users').doc(res.user.uid).get()
+
+            dispatchAuth({type:'LOGIN',payload:{uid:user.id, ...user.data()}})
+
         }catch(err)
         {
             if(!cancelled)

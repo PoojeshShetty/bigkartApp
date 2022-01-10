@@ -27,9 +27,9 @@ function Signup() {
 
     const checkFormError = () => {
         
-        if(username.length>10)
+        if(username.length>20)
         {
-            setFormError('username length should be less then 10 characters')
+            setFormError('username length should be less then 20 characters')
             return true
         }
         if(password.length<10)
