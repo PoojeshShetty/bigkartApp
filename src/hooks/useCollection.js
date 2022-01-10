@@ -7,7 +7,6 @@ function useCollection(name) {
     const [error ,setError] = useState()
     const [cancelled, setCancelled] = useState(false)
     const [success,setSuccess] = useState(null)
-    const [documents, setDocuments] = useState([])
 
     const {setLoaded,setLoading} = useLoadingUtils()
 
@@ -35,15 +34,13 @@ function useCollection(name) {
         }
     }
 
-    const getDocuments = async () => {
-        
+    const updateDocument = async (object,id) => {
+
         setLoading()
 
         try{
 
-            const docs = await res.get()
-
-            console.log({docs})
+            await res.doc(id).update({...object})
 
             setSuccess(true)
         }catch(err)
@@ -55,10 +52,28 @@ function useCollection(name) {
         }
     }
 
+    const deleteDocument = async (id) => {
+
+        setLoading()
+
+        try{
+
+            await res.doc(id).delete()
+
+            setSuccess(true)
+        }catch(err)
+        {
+            if(!cancelled)
+                setError(err.message)
+        }finally{
+            setLoaded()
+        }
+    }
 
     return{
         addDocument,
-        getDocuments,
+        updateDocument,
+        deleteDocument,
         error,
         success
     }

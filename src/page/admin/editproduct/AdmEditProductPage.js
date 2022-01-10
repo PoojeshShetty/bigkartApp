@@ -1,4 +1,8 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import Loading from '../../../component/loading/Loading'
+import { projectFirestore } from '../../../config/firebase'
+import useCollection from '../../../hooks/useCollection'
 import './AdmEditProductPage.css'
 
 function AdmEditProductPage() {
@@ -7,14 +11,67 @@ function AdmEditProductPage() {
     const [brand, setBrand] = useState('brand')
     const [type, setType] = useState('shirt')
     const [description, setDescription] = useState('kahsdflaksjfdlkf')
-    const [imgurl, setImgUrl] = useState('https://aldsflasjdfkl.com')
-    const [price, setPrice] = useState('2433')
+    const [image, setImage] = useState('https://aldsflasjdfkl.com')
+    const [cost, setCost] = useState('2433')
+    const {id} = useParams()
+    const [product, setProduct] = useState(null)
+    const {updateDocument,deleteDocument, success} = useCollection('products')
+    const history = useHistory()
+
+    useEffect(()=>{
+        const getProduct = async () => {
+
+            const res = await projectFirestore.collection('products').doc(id).get()
+            console.log({res})
+            if(!res.exists)
+                setProduct("not exist")
+            else
+            {
+                setProduct({id:res.id,...res.data()})
+                setName(res.data().name)
+                setType(res.data().type)
+                setImage(res.data().image)
+                setDescription(res.data().description)
+                setCost(res.data().cost)
+            }
+        }
+        getProduct()
+    },[id])
+
+    useEffect(()=>{
+        success && history.push('/admin/products')
+    },[success,history])
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        
+        updateDocument({
+            name,
+            image,
+            brand,
+            description,
+            cost,
+            type
+        },id)
+    }
+
+    if(!product)
+        return(
+            <Loading />
+        )
+    
+    if(product==="not exist")
+        return(
+            <div>Product does not exist</div>
+        )
 
     return (
         <div className="admEditProduct__container">
             <span className="title">Edit product</span>
             
-            <form className="admEditProduct__form">
+            <div className="position__relative">
+                
+            <form className="admEditProduct__form" onSubmit={(e) => handleFormSubmit(e)}>
                 <div className="form__controle">
                     <span>Name</span>
                     <input 
@@ -55,21 +112,27 @@ function AdmEditProductPage() {
                     <span>Image Url</span>
                     <input 
                         type="text" 
-                        value={imgurl}
-                        onChange={({target}) => setImgUrl(target.value)}
+                        value={image}
+                        onChange={({target}) => setImage(target.value)}
                     />
                 </div>
                 <div className="form__controle">
                     <span>Price</span>
                     <input 
                         type="number" 
-                        value={price}
-                        onChange={({target}) => setPrice(target.value)}
+                        value={cost}
+                        onChange={({target}) => setCost(target.value)}
                     />
                 </div>
 
                 <button className='btn btn--black'>Submit</button>
             </form>
+
+                <button className="product__delete" onClick={() => deleteDocument(id)}>
+                    <img src="/svg/delete.svg" alt="" />
+                </button>
+            </div>
+            
             
             
         </div>

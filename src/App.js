@@ -74,20 +74,24 @@ function App() {
             <AdmProductsPage />
           </Route>
 
-          <Route path="/admin/editproduct" >
+          <Route path="/admin/editproduct/:id" exact>
             <AdmEditProductPage />
           </Route>
 
-          <Route path="/admin/addproduct" >
+          <Route path="/admin/addproduct" exact>
             <AddProductPage />
           </Route>
 
-          <Route path="/home" >
+          <Route path="/home">
             <HomePage />
           </Route>
           
           <Route path="/" exact>
             <Redirect to="/home" />
+          </Route>
+
+          <Route path="*">
+            Page not found 404
           </Route>
         </Switch>
       </div>

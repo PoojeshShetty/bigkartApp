@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Product from '../product/Product'
 import './AdmProduct.css'
 
 function AdmProduct({propsProduct}) {
@@ -19,7 +20,7 @@ function AdmProduct({propsProduct}) {
                     <div className="admproduct__cost">
                         Rs {propsProduct.cost}
                     </div>
-                    <Link to="/admin/editproduct">
+                    <Link to={`/admin/editproduct/${propsProduct.id}`}>
                         <button
                             className="btn btn--black">
                             Edit

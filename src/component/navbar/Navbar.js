@@ -4,6 +4,7 @@ import SignInNav from './SignInNav'
 import SignoutNav from './SignoutNav'
 import './Navbar.css'
 import { useAuth } from '../../hooks/useAuth'
+import AdminNav from './AdminNav'
 
 function Navbar() {
 
@@ -25,9 +26,13 @@ function Navbar() {
                 </Link>
 
                 {
-                    user ?
-                    <SignInNav /> :
+                    !user ?
                     <SignoutNav />
+                    :
+                    user.type === 'admin' ?
+                    <AdminNav />
+                    :
+                    <SignInNav />    
                 }
                 
             </ul>
