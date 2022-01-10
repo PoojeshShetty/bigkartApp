@@ -22,7 +22,7 @@ function AdmEditProductPage() {
         const getProduct = async () => {
 
             const res = await projectFirestore.collection('products').doc(id).get()
-            console.log({res})
+            
             if(!res.exists)
                 setProduct("not exist")
             else
@@ -62,7 +62,7 @@ function AdmEditProductPage() {
     
     if(product==="not exist")
         return(
-            <div>Product does not exist</div>
+            <div className='page--info'>Product does not exist</div>
         )
 
     return (

@@ -1,45 +1,129 @@
-import React from 'react'
+import {useEffect} from 'react'
+import { useParams,useHistory } from 'react-router-dom'
+import { useState } from 'react/cjs/react.development'
+import Loading from '../../component/loading/Loading'
+import { projectFirestore } from '../../config/firebase'
+import { useAuth } from '../../hooks/useAuth'
+import { useCart } from '../../hooks/useCart'
+import { useCartContext } from '../../hooks/useCartContext'
 import './ViewProductPage.css'
 
-const initialProduct = {
-    id:1,
-    image: 'https://media.pendleton-usa.com/image/list/$i_!sfcc-is-main:True!/fn_edge:join/f_auto,q_auto,dpr_3.0/w_400,c_scale/51142-32417?_s=RAABAB0',
-    name: 'Shirt checks',
-    gender: 'male',
-    cost: '2300',
-    status: 'available',
-    brand: 'Nike'
-}
-
 function ViewProductPage() {
+
+    const {cart,wishlist} = useCartContext()
+    const {id} = useParams()
+    const [product, setProduct] = useState(null)
+    const history = useHistory()
+    const {user} = useAuth()
+    const { addProductToCart, addProductWishlist,removeProductWishlist } = useCart()
+
+    useEffect(()=>{
+        const getProduct = async () => {
+            const res = await projectFirestore.collection('products').doc(id).get()
+
+            if(!res.exists)
+                setProduct("not exist")
+            else{
+                setProduct({id:res.id,...res.data()})
+            }
+        }
+
+        getProduct()
+    },[id])
+
+    if(!product)
+    return(
+        <Loading />
+    )
+
+    if(product === "not exist")
+    return(
+        <div className="page--info">
+            Product does not exist
+        </div>
+    )
+
+    const handleAddToCart = (product,e) => {
+        e.preventDefault()
+
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
+        addProductToCart(product)
+    }
+
+    const handleAddProductToWishlist = (product,e) => {
+        e.preventDefault()
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
+        addProductWishlist(product)
+    }
+ 
+    const handleRemoveProductFromWishlist = (product,e) => {
+        e.preventDefault()
+
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
+        removeProductWishlist(product)
+    }
+
+    const handleNavigateViewCart = (e) => {
+        e.preventDefault()
+        history.push('/cart')
+    }
+
     return (
         <div className="viewproduct__container">
             <div className="viewproduct">
                 <div className="viewproduct__img">
-                    <img src={initialProduct.image} alt={initialProduct.name} />
+                    <img src={product.image} alt={product.name} />
                 </div>
                 <div className="viewproduct__info">
                     <div className="viewproduct__name">
-                        {initialProduct.name}
+                        {product.name}
                     </div>
                     <div className="viewproduct__brand">
-                        {initialProduct.brand}
+                        {product.brand}
                     </div>
                     <div className="viewproduct__description">
                         <span>Description</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate officiis quasi eaque, quaerat accusantium libero nostrum facilis. Quia vitae minima, reprehenderit velit facere cupiditate deserunt dicta, incidunt commodi optio repudiandae.</p>
                     </div>
                     <div className="viewproduct__cost">
-                        Rs {initialProduct.cost}
+                        Rs {product.cost}
                     </div>
-                    <button className="btn btn--black">
-                        Cart
-                    </button>
+                     {
+                        cart.map(prod => prod.id).includes(product.id) ?
+                        <button className="btn btn--black" onClick={(e)=>handleNavigateViewCart(e)}>
+                            In Cart
+                        </button> :
+                        <button className="btn btn--black" onClick={(e)=>handleAddToCart(product,e)}>
+                            Add to Cart
+                        </button>
+                    }
                     
                 </div>
-                <div className="viewproduct__wish viewproduct--inwish">   
+                {
+                wishlist.map(prod => prod.id).includes(product.id) ?
+                <div 
+                    onClick={(e) => handleRemoveProductFromWishlist(product,e)}
+                    className="product__wish product--inwish">   
+                    <img src="/svg/wish_btn.svg" alt="" />    
+                </div> :
+                <div 
+                    onClick={(e) => handleAddProductToWishlist(product,e)}
+                    className="product__wish">   
                     <img src="/svg/wish_btn.svg" alt="" />    
                 </div>
+            }
             </div>
         </div>
     )

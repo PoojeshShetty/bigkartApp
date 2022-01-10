@@ -14,7 +14,7 @@ function Navbar() {
         <nav className="navbar">
             <ul className="navbar__items">
 
-                <Link to="/home" className='logo'>
+                <Link to="/products" className='logo'>
                         <li className="navbar__item">
                             <div className="logo_icon">
                                 

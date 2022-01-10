@@ -38,3 +38,9 @@ body{
   margin:8px 0;
   padding:4px 8px;
 }
+
+.page--info{
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-align: center;
+}

@@ -1,4 +1,6 @@
 import React, { useState,useEffect} from 'react'
+import { useAuth } from '../../hooks/useAuth'
+import useCollection from '../../hooks/useCollection'
 import './EditAddress.css'
 
 function EditAddress({address,setEdit}) {
@@ -6,14 +8,18 @@ function EditAddress({address,setEdit}) {
     const [addressValue,setAddressValue] = useState(address)
     const [addressErr, setAddressErr] = useState(null)
     const [cancelled, setCancelled] = useState(false)
-    const handleCancelClick = () => {
-        setEdit(false)
-    }
-    
+    const {updateDocumentWithUrl} = useCollection('users')
+    const {user,dispatchAuth} = useAuth()
+
     useEffect(()=>{
 
         return () => setCancelled(true)
     },[])
+
+    const handleCancelClick = () => {
+        setEdit(false)
+    }
+    
     const handleSaveClick = () => {
         if(addressValue.length ===0)
         {
@@ -24,6 +30,13 @@ function EditAddress({address,setEdit}) {
             },7000)
             return
         }
+
+        updateDocumentWithUrl(`users`,user.uid,{address:addressValue})
+
+        let userObj = user
+        userObj.address = addressValue
+        dispatchAuth({type:'UPDATE_ADDRESS',payload:userObj})
+        
         setEdit(false)
     }
 

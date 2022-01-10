@@ -11,6 +11,8 @@ const authReducer = (state,action) => {
             return {...state,uid:action.payload}
         case 'LOGOUT':
             return {...state,user:null,uid:null}
+        case 'UPDATE_ADDRESS':
+            return {...state,user:action.payload}
         default:
             return state
     }

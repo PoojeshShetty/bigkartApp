@@ -8,9 +8,11 @@
 }
 
 .editaddress textarea{
-    width:100%;
+    width:98%;
     resize: none;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 3px;
 }
 
 .btn__collection{
