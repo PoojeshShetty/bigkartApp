@@ -40,14 +40,14 @@ function App() {
       <div className="App__container">
         <Switch>
 
-
           <Route path="/login" exact>
             {user && <Redirect to="/products" />}
             {!user && <Login />}
           </Route>
 
           <Route path="/signup" exact>
-            <Signup />
+          {user && <Redirect to="/products" />}
+          {!user && <Signup />}
           </Route>
 
           <Route path="/products" >
@@ -59,27 +59,36 @@ function App() {
           </Route>
 
           <Route path="/cart" >
-            <ViewCartPage />
+          {user && <ViewCartPage />}
+          {!user && <Login />}
           </Route>
 
           <Route path="/checkout" >
-            <CheckoutPage />
+          {user && <CheckoutPage />}
+          {!user && <Login />}
           </Route>
 
           <Route path="/wishlist" >
-            <WishlistPage />
+          {user && <WishlistPage />}
+          {!user && <Login />}
           </Route>
 
           <Route path="/admin/products" >
-            <AdmProductsPage />
+            {!user && <Login />}
+            {user && user.type === 'user' && <Redirect to="/products" />}
+            {user && user.type === 'admin' && <AdmProductsPage />}
           </Route>
 
           <Route path="/admin/editproduct/:id" exact>
-            <AdmEditProductPage />
+            {!user && <Login />}
+            {user && user.type === 'user' && <Redirect to="/products" />}
+            {user && user.type === 'admin' && <AdmEditProductPage />}
           </Route>
 
           <Route path="/admin/addproduct" exact>
-            <AddProductPage />
+            {!user && <Login />}
+            {user && user.type === 'user' && <Redirect to="/products" />}
+            {user && user.type === 'admin' && <AddProductPage />}
           </Route>
 
           <Route path="/home">
