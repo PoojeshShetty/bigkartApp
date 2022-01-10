@@ -1,82 +1,38 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import './Products.css'
 import Sidebar from '../../component/sidebar/Sidebar'
 import Product from '../../component/product/Product'
 import Filter from '../../component/filter/Filter'
+import Loading from '../../component/loading/Loading'
 import { useCartContext } from '../../hooks/useCartContext'
 import { sortProductList, brandProductFilter, typeProductFilter } from './utils/filterUtils'
-
-const initialProductList = [
-    {
-        id:1,
-        image: 'https://media.pendleton-usa.com/image/list/$i_!sfcc-is-main:True!/fn_edge:join/f_auto,q_auto,dpr_3.0/w_400,c_scale/51142-32417?_s=RAABAB0',
-        name: 'Shirt checks',
-        gender: 'male',
-        cost: '2300',
-        status: 'available',
-        brand: 'Nike',
-        type: 'Shirt'
-    },
-    {
-        id:2,
-        image: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRuUyuCZVg7kDih5_l8XdjZvf5JyBgN9LnoIqgItrsIznH_FAiLlmuUmE-gTntW8fvGnk93ZEEooXg&usqp=CAc',
-        name: 'shoes',
-        gender: 'male',
-        cost: '2300',
-        status: 'available',
-        brand: 'Nike',
-        type: 'Shoe'
-    },
-    {
-        id:3,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR48WNwBqkMVGG9wn210I3x_jb-bGj6Avcb9A&usqp=CAU',
-        name: 'Jeans',
-        gender: 'male',
-        cost: '2300',
-        status: 'available',
-        brand: 'Nike',
-        type: 'Jeans'
-    },
-    {
-        id:4,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_2vUHKhgqBJQhEvxzaRVXIgagqVQC9jczHw&usqp=CAU',
-        name: 'Jeans',
-        gender: 'male',
-        cost: '2300',
-        status: 'available',
-        brand: 'Nike',
-        type: 'Jeans'
-    },
-    {
-        id:5,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHPqjcCePcPzasbKQmWOrfPdzoX7nDI0W3Ig&usqp=CAU',
-        name: 'Shirt checks',
-        gender: 'male',
-        cost: '3000',
-        status: 'available',
-        brand: 'Allen Solley',
-        type: 'Shirt'
-    },
-    {
-        id:6,
-        image: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTyhhnCVcJL0WQm9Nhk0ongcpCk5UdhaPSH23YwtBVbSQ-ZZRBrCMJXdgZpa-qK_DuxE4hjWy6XUWQ00e0Gm7MZGeyJP1MK6yzyk6Xk3Vw&usqp=CAY',
-        name: 'Watches',
-        gender: 'male',
-        cost: '1500',
-        status: 'available',
-        brand: 'Sonata',
-        type: 'Watch'
-    }
-
-]
+import {projectFirestore} from '../../config/firebase'
 
 function Products() {
 
     const [viewsidebar,setViewSidbar] = useState(false)
     const {sort,brand,type} = useCartContext()
+    const [products,setProducts] = useState(null)
 
-    let productList = initialProductList
-    productList = sortProductList(initialProductList,sort)
+    useEffect(()=>{
+
+        const getProducts = async () => {
+            const res = await projectFirestore.collection('products').get()
+            let result = []
+            res.docs.forEach(doc => result.push({id:doc.id,...doc.data()}))
+            setProducts(result)
+        }
+
+        getProducts()
+    },[])
+
+    if(!products)
+    return(
+        <Loading />
+    )
+
+    let productList = products
+    productList = sortProductList(products,sort)
     productList = brandProductFilter(productList,brand)
     productList = typeProductFilter(productList,type)
 
@@ -107,7 +63,7 @@ function Products() {
                 viewsidebar={viewsidebar} 
                 setViewSidebar={setViewSidbar} 
             >
-                <Filter propsProducts={initialProductList}/>
+                <Filter propsProducts={products}/>
             </Sidebar>
 
             <br />

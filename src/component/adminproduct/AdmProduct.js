@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import Product from '../product/Product'
 import './AdmProduct.css'
 
 function AdmProduct({propsProduct}) {

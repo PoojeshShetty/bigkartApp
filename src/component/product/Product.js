@@ -52,7 +52,7 @@ function Product({propsProduct}) {
                             In Cart
                         </button> :
                         <button className="btn btn--black" onClick={(e)=>handleAddToCart(propsProduct,e)}>
-                            Cart
+                            Add to Cart
                         </button>
                     }
                 </div>
