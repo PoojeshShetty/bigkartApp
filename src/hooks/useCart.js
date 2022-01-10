@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react'
+import { useAuth } from './useAuth'
 import { useCartContext } from './useCartContext'
+import useCollection from './useCollection'
 import { useLoadingUtils } from './useLoadingUtils'
 
 function useCart() {
@@ -9,6 +11,9 @@ function useCart() {
     const { cart,wishlist, cartDispatch } = useCartContext()
     const { setLoading, setLoaded}  = useLoadingUtils()
 
+    const {user} = useAuth()
+    const {addDocumentWithUrl} = useCollection(`carts`)
+
     useEffect(()=>{
 
         return () => setCancelled(true)
@@ -17,19 +22,16 @@ function useCart() {
 
     const addProductToCart = (product) => {
         
-        setLoading()
-        setCartError(null)
-
         try{
 
+            addDocumentWithUrl(`carts/${user.uid}/products`,{...product,qt:1})
+            
             cartDispatch({type:'ADD_TO_CART', payload: {...product, qt: 1}})
 
         }catch(err)
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            setTimeout(()=> setLoaded(),5000)    
         }
     }
 

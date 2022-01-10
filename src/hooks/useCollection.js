@@ -70,10 +70,31 @@ function useCollection(name) {
         }
     }
 
+    const addDocumentWithUrl = async (url,object) => {
+        
+        const req = projectFirestore.collection(url)
+        
+        setLoading()
+
+        try{
+
+            await req.add({...object})
+
+            setSuccess(true)
+        }catch(err)
+        {
+            if(!cancelled)
+                setError(err.message)
+        }finally{
+            setLoaded()
+        }
+    }
+
     return{
         addDocument,
         updateDocument,
         deleteDocument,
+        addDocumentWithUrl,
         error,
         success
     }
