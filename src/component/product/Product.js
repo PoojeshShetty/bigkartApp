@@ -1,5 +1,6 @@
 import React from 'react'
 import { useCart } from '../../hooks/useCart'
+import { useAuth } from '../../hooks/useAuth'
 import { useCartContext } from '../../hooks/useCartContext'
 import { Link, useHistory } from 'react-router-dom'
 import './Product.css'
@@ -9,19 +10,36 @@ function Product({propsProduct}) {
     const {cart, wishlist} = useCartContext()
     const { addProductToCart, addProductWishlist,removeProductWishlist } = useCart()
     const history = useHistory()
+    const {user} = useAuth()
 
     const handleAddToCart = (product,e) => {
         e.preventDefault()
+
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
         addProductToCart(product)
     }
 
     const handleAddProductToWishlist = (product,e) => {
         e.preventDefault()
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
         addProductWishlist(product)
     }
  
     const handleRemoveProductFromWishlist = (product,e) => {
         e.preventDefault()
+        if(!user)
+        {
+            history.push('/login')
+            return 
+        }
         removeProductWishlist(product)
     }
 
@@ -29,6 +47,7 @@ function Product({propsProduct}) {
         e.preventDefault()
         history.push('/cart')
     }
+
     return (
         <Link className="product__card" to={`/viewproduct/${propsProduct.id}`}
         >

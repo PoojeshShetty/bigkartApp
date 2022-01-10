@@ -13,7 +13,6 @@ function Products() {
     const [viewsidebar,setViewSidbar] = useState(false)
     const {sort,brand,type} = useCartContext()
     const [products,setProducts] = useState(null)
-
     useEffect(()=>{
 
         const getProducts = async () => {
@@ -24,6 +23,7 @@ function Products() {
         }
 
         getProducts()
+
     },[])
 
     if(!products)
