@@ -1,5 +1,5 @@
 
-const CartReducer = (state, action) => {
+const cartReducer = (state, action) => {
     switch(action.type)
     {
         case 'ADD_TO_CART':
@@ -40,6 +40,6 @@ const initialCart = {
 }
 
 export {
-    CartReducer,
+    cartReducer,
     initialCart
 } 

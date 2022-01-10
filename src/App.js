@@ -14,17 +14,19 @@ import AdmEditProductPage from './page/admin/editproduct/AdmEditProductPage';
 import { useCartContext } from './hooks/useCartContext';
 import { useLoading } from './hooks/useLoading';
 import Loading from './component/loading/Loading';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
 
   const context = useCartContext()
-
   const {loading} = useLoading()
+  const userContext = useAuth()
 
-  console.log({...context})
+  console.log(userContext)
 
   return (
     <div className="App">
+      
       {loading && <Loading />}
       <Navbar />
       <div className="App__container">
