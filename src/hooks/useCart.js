@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import { useAuth } from './useAuth'
 import { useCartContext } from './useCartContext'
 import useCollection from './useCollection'
+import { useLoading } from './useLoading'
 import { useLoadingUtils } from './useLoadingUtils'
 
 function useCart() {
@@ -12,7 +13,7 @@ function useCart() {
     const { setLoading, setLoaded}  = useLoadingUtils()
 
     const {user} = useAuth()
-    const {addDocumentWithUrl} = useCollection(`carts`)
+    const {addDocumentWithUrl,updateDocumentWithUrl,deleteDocumentWithUrl} = useCollection(`carts`)
 
     useEffect(()=>{
 
@@ -35,64 +36,77 @@ function useCart() {
         }
     }
 
-    const incrProductQt = (id) => {
+    const incrProductQt = async (id,docId) => {
         
-        setLoading()
         setCartError(null)
 
         try{
+
+            let updateQt = {}
             let cartList = cart.map(prod => {
                 if(prod.id === id)
-                    return {...prod, qt:prod.qt+1}
+                    {
+                        updateQt = {qt:prod.qt+1}
+                        return {...prod, qt:prod.qt+1}
+                    }
                 return prod
             })
+
+            updateDocumentWithUrl(`carts/${user.uid}/products`,docId,{...updateQt})
+            
             cartDispatch({type:'INCR_PRODUCT_QT', payload: cartList })
 
         }catch(err)
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            setTimeout(()=> setLoaded(),5000)
         }
     }
 
-    const decrProductQt = (id) => {
-        setLoading()
+    const decrProductQt = (id, docId) => {
+
         setCartError(null)
 
         try{
+
+            let updateQt = {}
+
             let cartList = cart.map(prod => {
                 if(prod.id === id)
+                {
+                    updateQt = {qt:prod.qt-1}
                     return {...prod, qt:prod.qt-1}
+                }
                 return prod
             })
+
+            updateDocumentWithUrl(`carts/${user.uid}/products`,docId,{...updateQt})
+            
             cartDispatch({type:'DECR_PRODUCT_QT', payload: cartList })
 
         }catch(err)
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            setTimeout(()=> setLoaded(),5000)
         }
     }
 
-    const deleteProduct = (id) => {
-        setLoading()
+    const deleteProduct = (id,docId) => {
+
         setCartError(null)
 
         try{
             
             let cartList = cart.filter(prod => prod.id !== id)
+
+            deleteDocumentWithUrl(`carts/${user.uid}/products`,docId)
+            
             cartDispatch({type:'DECR_PRODUCT_QT', payload: cartList })
 
         }catch(err)
         {
             if(!cancelled)
                 setCartError(err.message)
-        }finally{
-            setTimeout(()=> setLoaded(),5000)
         }
     }
 

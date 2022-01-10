@@ -73,7 +73,7 @@ function useCollection(name) {
     const addDocumentWithUrl = async (url,object) => {
         
         const req = projectFirestore.collection(url)
-        
+
         setLoading()
 
         try{
@@ -90,11 +90,53 @@ function useCollection(name) {
         }
     }
 
+    const updateDocumentWithUrl = async (url,id,object) => {
+        
+        const req = projectFirestore.collection(url).doc(id)
+        
+        setLoading()
+
+        try{
+
+            await req.update({...object})
+
+            setSuccess(true)
+        }catch(err)
+        {
+            if(!cancelled)
+                setError(err.message)
+        }finally{
+            setLoaded()
+        }
+    }
+
+    const deleteDocumentWithUrl = async (url,id) => {
+        
+        const req = projectFirestore.collection(url).doc(id)
+        
+        setLoading()
+
+        try{
+
+            await req.delete()
+
+            setSuccess(true)
+        }catch(err)
+        {
+            if(!cancelled)
+                setError(err.message)
+        }finally{
+            setLoaded()
+        }
+    }
+
     return{
         addDocument,
         updateDocument,
         deleteDocument,
         addDocumentWithUrl,
+        updateDocumentWithUrl,
+        deleteDocumentWithUrl,
         error,
         success
     }

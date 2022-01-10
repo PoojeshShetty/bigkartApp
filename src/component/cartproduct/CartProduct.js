@@ -6,16 +6,16 @@ function CartProduct({product}) {
 
     const { incrProductQt, decrProductQt, deleteProduct } = useCart()
 
-    const handleDeleteProduct = (id) => {
-        deleteProduct(id)
+    const handleDeleteProduct = (id,docId) => {
+        deleteProduct(id,docId)
     }
 
-    const handleRemoveProduct = (id) => {
-        decrProductQt(id)
+    const handleRemoveProduct = (id,docId) => {
+        decrProductQt(id,docId)
     }
 
-    const handleAddProduct = (id) => {
-        incrProductQt(id)
+    const handleAddProduct = (id,docId) => {
+        incrProductQt(id,docId)
     }
 
     return (
@@ -39,11 +39,11 @@ function CartProduct({product}) {
                     {
                         product.qt === 1 ?
                         <button className="cartproduct__decr"
-                            onClick={() => handleDeleteProduct(product.id)}>
+                            onClick={() => handleDeleteProduct(product.id, product.docId)}>
                             <img src="/svg/delete.svg" alt="" />
                         </button>:
                         <button className="cartproduct__decr"
-                            onClick={() => handleRemoveProduct(product.id)}>
+                            onClick={() => handleRemoveProduct(product.id, product.docId)}>
                             <img src="/svg/remove.svg" alt="" />
                         </button>
                     }
@@ -52,7 +52,7 @@ function CartProduct({product}) {
                         {product.qt}
                     </div>
                     <button className="cartproduct__incr"
-                        onClick={() => handleAddProduct(product.id)}>
+                        onClick={() => handleAddProduct(product.id, product.docId)}>
                         <img src="/svg/add.svg" alt="" />
                     </button>
                 </div>
