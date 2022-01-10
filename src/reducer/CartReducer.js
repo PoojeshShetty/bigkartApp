@@ -26,6 +26,10 @@ const cartReducer = (state, action) => {
             return {...state, type: action.payload}
         case 'RESET_FILTER':
             return {...state, type:[], brand:[], sort:''}
+        case 'UPDATE_CART_SERVER' :
+            return {...state, cart:action.payload}
+        case 'UPDATE_WISHLIST_SERVER' :
+            return {...state, wishlist:action.payload}
         default:
             return state
     }
