@@ -1,27 +1,19 @@
 import {useState, useEffect} from 'react'
 import { useCartContext } from './useCartContext'
-import { useLoading } from './useLoading'
+import { useLoadingUtils } from './useLoadingUtils'
 
 function useCart() {
     const [cartError, setCartError] = useState(null)
     const [cancelled, setCancelled] = useState(false)
 
     const { cart,wishlist, cartDispatch } = useCartContext()
-    const { loadDispatch} = useLoading()
+    const { setLoading, setLoaded}  = useLoadingUtils()
 
     useEffect(()=>{
 
         return () => setCancelled(true)
 
     },[])
-
-    const setLoading = () => {
-        loadDispatch({type:'LOADING'})
-    }
-
-    const setLoaded = () => {
-        loadDispatch({type:'LOADED'})
-    }
 
     const addProductToCart = (product) => {
         
