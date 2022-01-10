@@ -3,7 +3,6 @@ import './Products.css'
 import Sidebar from '../../component/sidebar/Sidebar'
 import Product from '../../component/product/Product'
 import Filter from '../../component/filter/Filter'
-import { Link, useHistory } from 'react-router-dom'
 import { useCartContext } from '../../hooks/useCartContext'
 import { sortProductList, brandProductFilter, typeProductFilter } from './utils/filterUtils'
 

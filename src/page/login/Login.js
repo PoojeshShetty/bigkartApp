@@ -1,15 +1,33 @@
-import React from 'react'
+import {useState} from 'react'
 import { Link } from 'react-router-dom'
+import { useLogin } from '../../hooks/useLogin'
 import './Login.css'
 
 function Login() {
+
+    const [email,setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const {login, error} = useLogin()
+    
+    const handleLogin = (e) => {
+        e.preventDefault()
+
+        login(email,password)
+    }
     return (
         <div className="login__container">
-            <form className="login__form">
+            <form className="login__form" onSubmit={(e) => handleLogin(e)}>
 
                 <span className="form__title">
                     Login
                 </span>
+
+                {
+                    error && 
+                        <div className="error--msg">
+                            {error}
+                        </div>
+                }
 
                 <div className="form__control">
                     <label>
@@ -18,6 +36,8 @@ function Login() {
                     <input 
                         type="email" 
                         placeholder='Email'
+                        value={email}
+                        onChange={({target}) => setEmail(target.value)}
                         required
                     />
                 </div>
@@ -29,6 +49,8 @@ function Login() {
                     <input 
                         type="password" 
                         placeholder='Password'
+                        value={password}
+                        onChange={({target}) => setPassword(target.value)}
                         required
                     />
                 </div>
