@@ -1,10 +1,13 @@
 import {Link} from 'react-router-dom'
 import { useCartContext } from '../../hooks/useCartContext'
+import useLogout from '../../hooks/useLogout'
 
 function SignInNav() {
 
     const {cart, wishlist} = useCartContext()
-
+    
+    const {logout} = useLogout()
+    
     return (
         <>
                 <Link to="/cart">
@@ -27,13 +30,12 @@ function SignInNav() {
                     </li>
                 </Link>
 
-                <Link to="/logout">
-                    <li className="navbar__item">
-                        <div className="navbar__itemIcn">
-                                Logout
-                        </div>
-                    </li>
-                </Link>
+                <button 
+                    onClick={logout}
+                    className="btn btn--black">
+                    Logout
+                   
+                </button>
         </>
     )
 }

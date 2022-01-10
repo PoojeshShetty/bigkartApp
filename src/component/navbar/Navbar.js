@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom'
 import SignInNav from './SignInNav'
 import SignoutNav from './SignoutNav'
 import './Navbar.css'
+import { useAuth } from '../../hooks/useAuth'
 
 function Navbar() {
+
+    const {user} = useAuth()
+
     return (
         <nav className="navbar">
             <ul className="navbar__items">
 
-                <Link to="/products" className='logo'>
+                <Link to="/home" className='logo'>
                         <li className="navbar__item">
                             <div className="logo_icon">
                                 
@@ -20,7 +24,11 @@ function Navbar() {
                         </li>
                 </Link>
 
-                <SignInNav />
+                {
+                    user ?
+                    <SignInNav /> :
+                    <SignoutNav />
+                }
                 
             </ul>
         </nav>

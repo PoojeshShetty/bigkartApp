@@ -1,5 +1,7 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import useCollection from '../../../hooks/useCollection'
 import './AddProductPage.css'
+import {useHistory} from 'react-router-dom'
 
 function AddProductPage() {
 
@@ -10,11 +12,39 @@ function AddProductPage() {
     const [imgurl, setImgUrl] = useState('')
     const [price, setPrice] = useState('')
 
+    const {addDocument, error, success} = useCollection('products')
+    const history = useHistory()
+
+    useEffect(()=>{
+        success && history.push('/admin/products')
+    },[success,history])
+
+    const handleFormSubmit = (e) => {
+
+        e.preventDefault()
+
+        addDocument({
+            name,
+            brand,
+            type,
+            description,
+            image:imgurl,
+            cost:price
+        })
+    }
+
     return (
         <div className="addproduct__container">
             <span className="title">Add product</span>
             
-            <form className="addproduct__form">
+            {
+                error &&
+                <div className="error--msg">
+                    {error}
+                </div>
+            }
+
+            <form className="addproduct__form" onSubmit={(e) => handleFormSubmit(e)}>
                 <div className="form__controle">
                     <span>Name</span>
                     <input 
