@@ -1,11 +1,13 @@
 import {projectAuth} from '../config/firebase'
 import { useAuth } from './useAuth'
+import { useCartContext } from './useCartContext'
 import { useLoadingUtils } from './useLoadingUtils'
 
 function useLogout() {
 
     const {setLoading, setLoaded} = useLoadingUtils()
     const {dispatchAuth} = useAuth()
+    const {cartDispatch} = useCartContext()
 
     const logout = async () => {
 
@@ -15,6 +17,8 @@ function useLogout() {
 
             await projectAuth.signOut()
             dispatchAuth({type:'LOGOUT'})
+            
+            cartDispatch({type:'CLEAR_STATE'})
 
         }catch(err)
         {
