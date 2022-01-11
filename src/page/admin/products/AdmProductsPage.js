@@ -1,5 +1,4 @@
-import {useEffect} from 'react'
-import { useState } from 'react/cjs/react.development'
+import {useEffect,useState} from 'react'
 import AdmProduct from '../../../component/adminproduct/AdmProduct'
 import { projectFirestore } from '../../../config/firebase'
 import './AdmProductsPage.css'

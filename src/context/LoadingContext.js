@@ -1,5 +1,4 @@
-import {createContext} from 'react'
-import { useReducer } from 'react/cjs/react.development'
+import {createContext,useReducer} from 'react'
 import {loadReducer,initialState} from '../reducer/LoadReducer'
 
 export const LoadingContext = createContext()

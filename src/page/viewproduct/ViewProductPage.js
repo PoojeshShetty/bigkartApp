@@ -1,6 +1,5 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import { useParams,useHistory } from 'react-router-dom'
-import { useState } from 'react/cjs/react.development'
 import Loading from '../../component/loading/Loading'
 import { projectFirestore } from '../../config/firebase'
 import { useAuth } from '../../hooks/useAuth'
