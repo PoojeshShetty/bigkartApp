@@ -19,7 +19,7 @@ function CartContextProvider({children}) {
             if(!res.empty)
             {
                 res.docs.forEach(doc => result.push({docId:doc.id,...doc.data()}))
-                console.log({result})
+                
                 cartDispatch({type:'UPDATE_CART_SERVER',payload:result})
             }
         }
@@ -30,7 +30,7 @@ function CartContextProvider({children}) {
             if(!res.empty)
             {
                 res.docs.forEach(doc => result.push({docId:doc.id,...doc.data()}))
-                console.log({result})
+                
                 cartDispatch({type:'UPDATE_WISHLIST_SERVER',payload:result})
             }
         }

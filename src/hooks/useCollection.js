@@ -117,7 +117,7 @@ function useCollection(name) {
         setLoading()
 
         try{
-            console.log({req})
+            
             await req.delete()
 
             setSuccess(true)
@@ -145,7 +145,7 @@ function useCollection(name) {
             })
 
             setSuccess(true)
-            
+
         }catch(err)
         {
             if(!cancelled)

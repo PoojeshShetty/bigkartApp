@@ -11,7 +11,6 @@ import WishlistPage from './page/wishlist/WishlistPage';
 import AddProductPage from './page/admin/addproduct/AddProductPage';
 import AdmProductsPage from './page/admin/products/AdmProductsPage';
 import AdmEditProductPage from './page/admin/editproduct/AdmEditProductPage';
-import { useCartContext } from './hooks/useCartContext';
 import { useLoading } from './hooks/useLoading';
 import Loading from './component/loading/Loading';
 import { useAuth } from './hooks/useAuth';
@@ -19,12 +18,8 @@ import HomePage from './page/home/HomePage';
 
 function App() {
 
-  const context = useCartContext()
   const {loading} = useLoading()
   const {isAuthReady,user} = useAuth()
-
-  console.log(context)
-  console.log({isAuthReady,user})
 
   if(!isAuthReady)
   return (

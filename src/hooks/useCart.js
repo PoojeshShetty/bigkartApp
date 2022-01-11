@@ -131,8 +131,6 @@ function useCart() {
         try{
             
             let newWishlist = wishlist.filter(prod => prod.id !== product.id)
-
-            console.log({product})
             
             deleteDocumentWithUrl(`wishlist/${user.uid}/products`,product.id)
 
