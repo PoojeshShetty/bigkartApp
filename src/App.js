@@ -55,33 +55,33 @@ function App() {
 
           <Route path="/cart" >
           {user && <ViewCartPage />}
-          {!user && <Login />}
+          {!user && <Redirect to="/login" />}
           </Route>
 
           <Route path="/checkout" >
           {user && <CheckoutPage />}
-          {!user && <Login />}
+          {!user && <Redirect to="/login" />}
           </Route>
 
           <Route path="/wishlist" >
           {user && <WishlistPage />}
-          {!user && <Login />}
+          {!user && <Redirect to="/login" />}
           </Route>
 
           <Route path="/admin/products" >
-            {!user && <Login />}
+            {!user && <Redirect to="/login" />}
             {user && user.type === 'user' && <Redirect to="/products" />}
             {user && user.type === 'admin' && <AdmProductsPage />}
           </Route>
 
           <Route path="/admin/editproduct/:id" exact>
-            {!user && <Login />}
+            {!user && <Redirect to="/login" />}
             {user && user.type === 'user' && <Redirect to="/products" />}
             {user && user.type === 'admin' && <AdmEditProductPage />}
           </Route>
 
           <Route path="/admin/addproduct" exact>
-            {!user && <Login />}
+            {!user && <Redirect to="/login" />}
             {user && user.type === 'user' && <Redirect to="/products" />}
             {user && user.type === 'admin' && <AddProductPage />}
           </Route>
