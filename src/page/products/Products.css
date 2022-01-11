@@ -12,10 +12,11 @@
 }
 
 .products__filter{
-    float:left;
     cursor:pointer;
     position:sticky;
     top:5rem;
+    left:5px;
+    width:80px;
     z-index: 115;
 }
 
