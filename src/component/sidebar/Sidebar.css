@@ -1,0 +1,42 @@
+.sidebar{
+    position:fixed;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.8);
+    width: 100vw;
+    height: 100vh;
+    top: 4rem;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+    z-index: 120;
+}
+
+.sidebar .btn__collection{
+    width: 99%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.btn__collection > *{
+    flex:1;
+}
+
+.sidebar__content{
+    position: fixed;
+    width: 15rem;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in;
+    z-index: 121;
+    overflow-y: scroll;
+}
+
+.sidebar.sidebar__view{
+    visibility: visible;
+    opacity: 1;
+}
+
+.sidebar__content.show__content{
+    transform: translateX(0%);
+}

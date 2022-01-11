@@ -1,0 +1,89 @@
+.product__card{
+    border:1px solid rgb(178, 178, 178);
+    padding:1em;
+    width: 290px;
+    display: inline-block;
+    transition:transform 0.2s ease-in;
+    overflow: hidden;
+    margin:0 auto;
+    position: relative;
+    color:inherit;
+    text-decoration: none;
+}
+
+.product__card:hover{
+    transform: scale(0.98);
+}
+.product__img{
+    overflow: hidden;
+    width:auto;
+    height:240px;
+    border:1px solid #777;
+    object-fit: contain;
+    object-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.product__img img{
+    width: 90%;
+    height: 100%;
+    margin:0 auto;  
+    object-fit: cover;
+}
+
+.product__info{
+    padding:0.5em;
+}
+
+.product__name{
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.2em;
+}
+
+.product__brand{
+    opacity:0.8;
+    margin-bottom: 0.3em;
+}
+
+.product__flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product__flex .btn{
+    width:4em;
+    font-size: 1.1rem;
+}
+
+.product__wish{
+    position: absolute;
+    top:0.5em;
+    right: 0.5em;
+    border-radius: 50%;
+    overflow: hidden;
+    border:2px solid black;
+    display: flex;
+    padding:2px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.product__wish img{
+    width:100%;
+    height: 100%;
+    cursor:pointer
+}
+
+.product__wish.product--inwish{
+    background-color: pink;
+    border:2px solid red;
+}
+
+.product--inwish img{
+    filter:invert(15%) sepia(92%) saturate(4805%) hue-rotate(16deg) brightness(110%) contrast(105%);
+}
+

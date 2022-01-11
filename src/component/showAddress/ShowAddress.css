@@ -1,0 +1,13 @@
+.showaddress{
+    padding:1em;
+}
+
+.showaddress .address{
+    padding:0.5em;
+}
+
+.showaddress .btn{
+    width:70px;
+    padding:4px 7px;
+    font-size: 1rem;
+}

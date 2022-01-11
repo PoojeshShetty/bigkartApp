@@ -1,0 +1,23 @@
+.filter__container{
+    padding:1em;
+}
+
+.filter__type{
+    margin:1.4em 0;
+}
+
+.filter__name{
+    font-weight: 900;
+    opacity: 0.9;
+    font-size: 1.5rem;
+}
+
+.filter__options label{
+    display: block;
+    margin:0.8em 0;
+    font-size: 1.2rem;
+}
+
+.filter__options label input{
+    transform: scale(1.2);
+}

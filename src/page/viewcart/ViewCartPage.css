@@ -1,0 +1,47 @@
+.viewcart__container{
+    display: flex;
+    width:70%;
+    margin:1em auto;
+}
+
+.viewcart__container > * {
+    flex : 1 1 50%;
+}
+
+.viewcart__pricedetails{
+    padding:1em;
+}
+
+.viewcart__pricedetails .btn{
+    width:100px;
+    padding:0.4em 0.7em;
+}
+
+.viewcart__pricedetails a{
+    text-decoration: none;
+}
+
+@media screen and (min-width:1150px) {
+    .viewcart__container{
+        width:70%;
+        
+    }
+}
+
+@media screen and (min-width:750px){
+    
+    .viewcart__pricedetails{
+        border-left:1px solid #777;
+    }
+}
+@media screen and (max-width:750px) {
+    .viewcart__container{
+        width:80%;
+        margin:0.7em auto;
+        flex-direction: column;
+    }
+
+    .viewcart__pricedetails{
+        border-top:1px solid #777;
+    }
+}

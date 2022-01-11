@@ -1,0 +1,27 @@
+.editaddress{
+    padding:0.5em;
+}
+
+.editaddress .address{
+    font-size: 1rem;
+    color:rgba(0,0,0,0.8);
+}
+
+.editaddress textarea{
+    width:98%;
+    resize: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 3px;
+}
+
+.btn__collection{
+    display: flex;
+    width:50%;
+}
+
+.btn__collection button{
+    margin:2px 4px;
+    font-size: 1rem;
+    padding:4px 7px;
+}

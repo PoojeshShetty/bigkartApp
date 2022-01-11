@@ -1,0 +1,65 @@
+.admproduct__card{
+    border:1px solid rgb(178, 178, 178);
+    padding:1em;
+    width: 290px;
+    display: inline-block;
+    transition:transform 0.2s ease-in;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+.admproduct__card:hover{
+    transform: scale(0.98);
+}
+
+.admproduct__img{
+    overflow: hidden;
+    width:auto;
+    height:240px;
+    border:1px solid #777;
+    object-fit: contain;
+    object-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.admproduct__img img{
+    width: 90%;
+    height: 100%;
+    margin:0 auto; 
+    object-fit: cover; 
+}
+
+.admproduct__info{
+    padding:0.5em;
+}
+
+.admproduct__name{
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.2em;
+}
+
+.admproduct__brand{
+    opacity:0.8;
+    margin-bottom: 0.3em;
+}
+
+.admproduct__flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admproduct__flex a{
+    text-decoration: none;
+    color:inherit;
+}
+
+.admproduct__flex .btn{
+    width:4em;
+    font-size: 1.1rem;
+}
+
+
+

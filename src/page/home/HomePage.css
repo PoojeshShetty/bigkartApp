@@ -1,0 +1,44 @@
+.homepage__container{
+    
+    object-fit: cover;
+    width:900px;
+    max-width: 100%;
+    margin:0 auto;
+
+}
+
+.homepage__container img{
+    width: 100%;
+    height: 100%;
+}
+
+.homepage__shopnow{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    padding:4px;
+    border-radius: 10px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.homepage__info{
+    margin-bottom: 1em;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.homepage__shopnow .btn{
+    width:150px;
+    padding:2px;
+    margin:0 auto;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.homepage__shopnow a{
+    text-decoration: none;
+    color:inherit;
+}
