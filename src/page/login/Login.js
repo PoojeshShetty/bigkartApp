@@ -14,6 +14,14 @@ function Login() {
 
         login(email,password)
     }
+
+    const handleQuestCredential = (e) => {
+        e.preventDefault()
+
+        setEmail('test@gmail.com')
+        setPassword('test@gmail.com')
+    }
+
     return (
         <div className="login__container">
             <form className="login__form" onSubmit={(e) => handleLogin(e)}>
@@ -57,7 +65,7 @@ function Login() {
 
                 <div className="form__btncl">
                     <button className="btn btn--black">Login</button>
-                    <button className="btn btn--black btn--guest">Guest Credentials</button>
+                    <button className="btn btn--black btn--guest" onClick={(e) => handleQuestCredential(e)}>Guest Credentials</button>
                 </div>
 
                 <div className="signup__link">

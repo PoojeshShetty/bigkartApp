@@ -10,6 +10,13 @@ function ViewCartPage() {
 
     const {cart} = useCartContext()
 
+    if(cart.length === 0 )
+    return(
+        <div className="page--info">
+            Cart is empty
+        </div>
+    )
+    
     return (
         <div className="viewcart__container">
             <div className="viewcart__product">

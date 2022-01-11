@@ -7,6 +7,13 @@ function WishlistPage() {
 
     const {wishlist} = useCartContext()
 
+    if(wishlist.length === 0)
+    return (
+        <div className="page--info">
+            No products in wishlist
+        </div>
+    )
+    
     return (
         <div className="wishlist__container">
             <div className="wishlist__product">
