@@ -12,7 +12,7 @@
 }
 
 .products__filter{
-    float:right;
+    float:left;
     cursor:pointer;
     position:sticky;
     top:5rem;
