@@ -7,12 +7,12 @@ import './AdmEditProductPage.css'
 
 function AdmEditProductPage() {
     
-    const [name, setName] = useState('name')
-    const [brand, setBrand] = useState('brand')
-    const [type, setType] = useState('shirt')
-    const [description, setDescription] = useState('kahsdflaksjfdlkf')
-    const [image, setImage] = useState('https://aldsflasjdfkl.com')
-    const [cost, setCost] = useState('2433')
+    const [name, setName] = useState('')
+    const [brand, setBrand] = useState('')
+    const [type, setType] = useState('')
+    const [description, setDescription] = useState('')
+    const [image, setImage] = useState('')
+    const [cost, setCost] = useState('')
     const {id} = useParams()
     const [product, setProduct] = useState(null)
     const {updateDocument,deleteDocument, success} = useCollection('products')
@@ -33,6 +33,7 @@ function AdmEditProductPage() {
                 setImage(res.data().image)
                 setDescription(res.data().description)
                 setCost(res.data().cost)
+                setBrand(res.data().brand)
             }
         }
         getProduct()

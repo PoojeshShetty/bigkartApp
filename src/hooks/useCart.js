@@ -10,7 +10,7 @@ function useCart() {
     const { cart,wishlist, cartDispatch } = useCartContext()
 
     const {user} = useAuth()
-    const {addDocumentWithUrlId,updateDocumentWithUrl,deleteDocumentWithUrl} = useCollection(`carts`)
+    const {addDocumentWithUrlId,updateDocumentWithUrl,deleteDocumentWithUrl,deleteCollection} = useCollection(`carts`)
 
     useEffect(()=>{
 
@@ -145,6 +145,23 @@ function useCart() {
         }
     }
 
+    const emptyCart = async () => {
+
+        setCartError(null)
+
+        try{
+            
+            deleteCollection(`carts/${user.uid}/products`)
+
+            cartDispatch({type:'EMPTY_CART'})
+
+        }catch(err)
+        {
+            if(!cancelled)
+                setCartError(err.message)
+        }
+    }
+
     return {
         addProductToCart,
         incrProductQt,
@@ -152,6 +169,7 @@ function useCart() {
         deleteProduct,
         addProductWishlist,
         removeProductWishlist,
+        emptyCart,
         cartError
     }
 }

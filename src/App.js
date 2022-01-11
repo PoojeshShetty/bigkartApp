@@ -100,7 +100,9 @@ function App() {
           </Route>
 
           <Route path="*">
-            Page not found 404
+            <div className="page--info">
+             404 Page not found.
+            </div>
           </Route>
         </Switch>
       </div>

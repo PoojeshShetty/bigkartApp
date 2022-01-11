@@ -1,5 +1,4 @@
 .sidebar{
-    border:1px solid red;
     position:fixed;
     visibility: hidden;
     background-color: rgba(0,0,0,0.8);
@@ -24,12 +23,13 @@
 
 .sidebar__content{
     position: fixed;
-    width: 12rem;
+    width: 15rem;
     height: 100%;
     background-color: white;
     transform: translateX(-100%);
     transition: transform 0.5s ease-in;
     z-index: 121;
+    overflow-y: scroll;
 }
 
 .sidebar.sidebar__view{

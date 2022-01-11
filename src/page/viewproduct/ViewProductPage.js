@@ -95,7 +95,7 @@ function ViewProductPage() {
                     </div>
                     <div className="viewproduct__description">
                         <span>Description</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate officiis quasi eaque, quaerat accusantium libero nostrum facilis. Quia vitae minima, reprehenderit velit facere cupiditate deserunt dicta, incidunt commodi optio repudiandae.</p>
+                        <p>{product.description}</p>
                     </div>
                     <div className="viewproduct__cost">
                         Rs {product.cost}

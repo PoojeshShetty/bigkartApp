@@ -117,10 +117,35 @@ function useCollection(name) {
         setLoading()
 
         try{
-
+            console.log({req})
             await req.delete()
 
             setSuccess(true)
+        }catch(err)
+        {
+            if(!cancelled)
+                setError(err.message)
+        }finally{
+            setLoaded()
+        }
+    }
+
+    const deleteCollection = async (url) => {
+        
+        const req = projectFirestore.collection(url)
+        
+        setLoading()
+
+        try{
+            
+            await req.onSnapshot(snapShot =>{
+                snapShot.docs.forEach(doc => {
+                    doc.ref.delete()
+                })
+            })
+
+            setSuccess(true)
+            
         }catch(err)
         {
             if(!cancelled)
@@ -137,6 +162,7 @@ function useCollection(name) {
         addDocumentWithUrlId,
         updateDocumentWithUrl,
         deleteDocumentWithUrl,
+        deleteCollection,
         error,
         success
     }

@@ -32,6 +32,8 @@ const cartReducer = (state, action) => {
             return {...state, wishlist:action.payload}
         case 'CLEAR_STATE':
             return {...initialCart}
+        case 'EMPTY_CART':
+            return {...state, cart:[]}
         default:
             return state
     }
